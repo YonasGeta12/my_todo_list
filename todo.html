@@ -40,7 +40,7 @@
             render();
          }
          render();
-         //Controller section
+         //Controller section 
          function addTodo(){
             const textbox = document.getElementById('todo-title');
             const title = textbox.value;   
@@ -55,9 +55,13 @@
          function deleteTodo(event){
             const deleteButton = event.target;
             const idToDelete = deleteButton.id;
+
+            removeTodo(idToDelete);
+            render();
          }
          // View section
          function render(){
+            // reset our list
             document.getElementById('todo-list').innerHTML='';
 
             todos.forEach(function (todo) {
