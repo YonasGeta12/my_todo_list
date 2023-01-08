@@ -9,11 +9,51 @@
       <div id="todo-list"></div>
       <script>
          // Model section
+         // if local storage has a todos array use it otherwise use the default array.
+         // let todos;
+
+         const savedTodos = JSON.parse(localStorage.getItem('todos'));
+
+         if (Array,isArray(savedTodos)){
+            //first retrive from the local storage then check if it is an array
+            todos =savedTodos;
+         }else{
+            todos = [
+               {
+                  title: 'Get coffee',
+                  dueDate: '2023-10-04',
+                  id: 'id1'
+               },
+               {
+                  title: 'Wash car',
+                  dueDate: '2023-11-05',
+                  id: 'id2'
+               },
+               {
+                  title: 'Make groceries',
+                  dueDate: '2023-12-06',
+                  id: 'id3'
+               },
+               {
+                  title: 'Get dinner',
+                  dueDate: '2023-12-08',
+                  id: 'id4'
+               }];
+         }
+
          let todos = [
-            {title: 'Get coffee', dueDate: '2023-10-04', id:'id1'},
-            {title:'Wash car',dueDate:'2023-11-05', id:'id2' },
-            {title:'Make groceries', dueDate:'2023-12-06', id:'id3'},
-            {title: 'Get dinner', dueDate:'2023-12-08', id:'id4'}];
+            {title: 'Get coffee', 
+            dueDate: '2023-10-04', 
+            id:'id1'},
+            {title:'Wash car', 
+            dueDate:'2023-11-05', 
+            id:'id2' },
+            {title:'Make groceries', 
+            dueDate:'2023-12-06', 
+            id:'id3'},
+            {title: 'Get dinner', 
+            dueDate:'2023-12-08', 
+            id:'id4'}];
          //Create a todo
          function createTodo(title,dueDate){
             const id= ''+new Date().getTime();
@@ -23,6 +63,8 @@
                dueDate: dueDate,
                id: id
             }); 
+
+            saveToos();
          }
 
          //Deletes a todo
@@ -37,9 +79,19 @@
                   return true;
                }
             });
-            render();
+            saveToos();
+         }
+
+         function saveToos(){
+
          }
          render();
+
+         //save as a string
+         function saveToos(){
+            localStorage.setItem('todos', JSON.stringify(todos));
+         }
+
          //Controller section 
          function addTodo(){
             const textbox = document.getElementById('todo-title');
